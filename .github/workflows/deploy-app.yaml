@@ -17,7 +17,9 @@ jobs:
         run: npm ci
         
       - name: Run linter
-        run: npm run lint
+        run:
+          npm init @eslint/config
+          npm lint
 
       - name: Run tests
         run: npm test

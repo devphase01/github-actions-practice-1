@@ -18,15 +18,12 @@ jobs:
         
       - name: Run linter
         run:
-          npm init @eslint/config
-          npm lint
+          npm run lint
 
       - name: Run tests
         run: npm test
   build:
     name: Test application
-    needs: 
-      - lint-and-test
     runs-on: ubuntu-latest
     steps:
       - name: Default

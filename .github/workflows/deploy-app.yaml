@@ -1,0 +1,44 @@
+name: 'Deployment'
+on: [push, workflow_dispatch]
+jobs:
+  lint-and-test:
+    name: Linter
+    runs-on: ubuntu-latest
+    steps:
+      - name: Default 
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      
+      - name: Install deps
+        run: npm ci
+        
+      - name: Run linter
+        run: npm lint
+
+      - name: Run tests
+        run: npm test
+  build:
+    name: Test application
+    runs-on: ubuntu-latest
+    steps:
+      - name: Default
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install deps
+        run: npm ci
+      
+      - name: Build
+        run: npm build
+      
+      - name: Deploy
+        run: echo deploying...
+

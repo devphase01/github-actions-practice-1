@@ -1,0 +1,11 @@
+name: 'Issue Listener'
+on: [issues]
+jobs:
+  output:
+    name: Output job
+    runs-on: ubuntu-latest
+    steps:      
+      - name: Output event
+        if: github.event_name == 'issue_event'
+        run: echo 'Event:' "${{ toJSON(github.event) }}" 
+        
